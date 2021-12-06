@@ -4,51 +4,57 @@ const { githubQuestion } = require("./questions");
 const { generateActionChoices } = require("./choices");
 
 const start = async () => {
-  const { githubUsername } = await inquirer.prompt(githubQuestion);
+  let usernameExists = true;
 
-  let inProgress = true;
+  while (usernameExists) {
+    const { githubUsername } = await inquirer.prompt(githubQuestion);
 
-  while (inProgress) {
-    const actionQuestion = {
-      type: "list",
-      message: "Select an action:",
-      name: "action",
-      choices: generateActionChoices(githubUsername),
-    };
+    let inProgress = true;
+    usernameExists = false;
 
-    const { action } = await inquirer.prompt(actionQuestion);
+    while (inProgress) {
+      const actionQuestion = {
+        type: "list",
+        message: "Select an action:",
+        name: "action",
+        choices: generateActionChoices(githubUsername),
+      };
 
-    if (action === "aboutUser") {
-      console.log("aboutUser");
-    }
+      const { action } = await inquirer.prompt(actionQuestion);
 
-    if (action === "allRepos") {
-      console.log("allRepos");
-    }
+      if (action === "aboutUser") {
+        console.log("aboutUser");
+      }
 
-    if (action === "recentlyCreated") {
-      console.log("recentlyCreated");
-    }
+      if (action === "allRepos") {
+        console.log("allRepos");
+      }
 
-    if (action === "recentlyUpdated") {
-      console.log("recentlyUpdated");
-    }
+      if (action === "recentlyCreated") {
+        console.log("recentlyCreated");
+      }
 
-    if (action === "allFollowers") {
-      console.log("allFollowers");
-    }
+      if (action === "recentlyUpdated") {
+        console.log("recentlyUpdated");
+      }
 
-    if (action === "findRepo") {
-      console.log("findRepo");
-    }
+      if (action === "allFollowers") {
+        console.log("allFollowers");
+      }
 
-    if (action === "differentUser") {
-      console.log("differentUser");
-    }
+      if (action === "findRepo") {
+        console.log("findRepo");
+      }
 
-    if (action === "exit") {
-      inProgress = false;
-      process.exit(0);
+      if (action === "differentUser") {
+        usernameExists = true;
+        inProgress = false;
+      }
+
+      if (action === "exit") {
+        inProgress = false;
+        process.exit(0);
+      }
     }
   }
 };
