@@ -19,6 +19,7 @@
   "homepage": "https://github.com/surajverma2587/github-cli-inquirer#readme",
   "dependencies": {
     "axios": "^0.24.0",
+    "console-table-printer": "^2.10.0",
     "inquirer": "^8.2.0"
   }
 }

@@ -2,7 +2,7 @@ const inquirer = require("inquirer");
 
 const { githubQuestion } = require("./questions");
 const { generateActionChoices } = require("./choices");
-const { displayUserInfo } = require("./github");
+const { displayUserInfo, listAllRepositories } = require("./github");
 
 const start = async () => {
   let usernameExists = true;
@@ -33,7 +33,7 @@ const start = async () => {
       }
 
       if (action === "allRepos") {
-        console.log("allRepos");
+        await listAllRepositories(githubUsername);
       }
 
       if (action === "recentlyCreated") {

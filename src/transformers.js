@@ -16,6 +16,16 @@ const transformUserInfo = (data) => {
   return userInfo;
 };
 
+const transformRepositories = (repos) => {
+  return repos.map((repo) => {
+    return {
+      name: repo.name,
+      url: repo.html_url,
+    };
+  });
+};
+
 module.exports = {
   transformUserInfo,
+  transformRepositories,
 };

@@ -1,6 +1,7 @@
 const axios = require("axios");
+const { printTable } = require("console-table-printer");
 
-const { transformUserInfo } = require("./transformers");
+const { transformUserInfo, transformRepositories } = require("./transformers");
 
 const displayUserInfo = async (username) => {
   try {
@@ -19,6 +20,17 @@ const displayUserInfo = async (username) => {
   }
 };
 
+const listAllRepositories = async (username) => {
+  const url = `https://api.github.com/users/${username}/repos`;
+
+  const { data } = await axios.get(url);
+
+  const repos = transformRepositories(data);
+
+  printTable(repos);
+};
+
 module.exports = {
   displayUserInfo,
+  listAllRepositories,
 };
