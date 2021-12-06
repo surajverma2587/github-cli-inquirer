@@ -2,6 +2,7 @@ const inquirer = require("inquirer");
 
 const { githubQuestion } = require("./questions");
 const { generateActionChoices } = require("./choices");
+const { displayUserInfo } = require("./github");
 
 const start = async () => {
   let usernameExists = true;
@@ -23,7 +24,7 @@ const start = async () => {
       const { action } = await inquirer.prompt(actionQuestion);
 
       if (action === "aboutUser") {
-        console.log("aboutUser");
+        await displayUserInfo(githubUsername);
       }
 
       if (action === "allRepos") {
