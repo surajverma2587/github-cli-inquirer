@@ -24,7 +24,12 @@ const start = async () => {
       const { action } = await inquirer.prompt(actionQuestion);
 
       if (action === "aboutUser") {
-        await displayUserInfo(githubUsername);
+        const isValid = await displayUserInfo(githubUsername);
+
+        if (!isValid) {
+          usernameExists = true;
+          inProgress = false;
+        }
       }
 
       if (action === "allRepos") {
