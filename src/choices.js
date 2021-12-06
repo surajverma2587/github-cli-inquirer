@@ -35,6 +35,34 @@ const generateActionChoices = (username) => {
   ];
 };
 
+const generateRepoActionChoices = (username) => {
+  return [
+    {
+      name: `Select a repository from a list for ${username}`,
+      value: "byList",
+    },
+    {
+      name: `Enter repository name for ${username}`,
+      value: "byName",
+    },
+    {
+      name: "Go back to main options",
+      value: "mainOptions",
+    },
+  ];
+};
+
+const generateRepoChoices = (repos) => {
+  return repos.map((repo) => {
+    return {
+      name: repo.name,
+      value: repo.name,
+    };
+  });
+};
+
 module.exports = {
   generateActionChoices,
+  generateRepoActionChoices,
+  generateRepoChoices,
 };

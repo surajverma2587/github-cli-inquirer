@@ -30,7 +30,16 @@ const listAllRepositories = async (username) => {
   printTable(repos);
 };
 
+const getAllRepos = async (username) => {
+  const url = `https://api.github.com/users/${username}/repos`;
+
+  const { data } = await axios.get(url);
+
+  return data;
+};
+
 module.exports = {
   displayUserInfo,
   listAllRepositories,
+  getAllRepos,
 };
